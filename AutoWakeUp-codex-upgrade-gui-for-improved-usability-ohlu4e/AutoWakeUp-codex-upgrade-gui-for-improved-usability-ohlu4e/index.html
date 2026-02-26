@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>AutoWakeUp Android</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero card">
+        <p class="eyebrow">Android-first</p>
+        <h1>AutoWakeUp</h1>
+        <p class="subtitle">Wake fresher with adaptive sleep-cycle timing and real native Android alarms.</p>
+        <p class="clock" id="heroClock">--:--:--</p>
+      </header>
+
+      <main>
+        <section class="card">
+          <h2>Sleep Plan + Drag Wake Window</h2>
+          <label>
+            Bedtime
+            <input type="time" id="bedtimeInput" required />
+          </label>
+          <label>
+            Sleep cycles (1-8, each ≈ 90 min)
+            <input type="number" id="cyclesInput" min="1" max="8" value="6" required />
+          </label>
+
+          <div class="range-head">
+            <strong>Wake window</strong>
+            <span id="windowLabel">--:-- to --:--</span>
+          </div>
+          <label>
+            Start slider
+            <input type="range" id="windowStartSlider" min="0" max="1439" value="390" />
+          </label>
+          <label>
+            End slider
+            <input type="range" id="windowEndSlider" min="0" max="1439" value="450" />
+          </label>
+
+          <div class="form-grid-2">
+            <label>
+              Wake start
+              <input type="time" id="windowStartInput" required />
+            </label>
+            <label>
+              Wake end
+              <input type="time" id="windowEndInput" required />
+            </label>
+          </div>
+
+          <p class="result">Adaptive target wake: <strong id="calculatedWake">--:--</strong></p>
+          <p class="hint">We choose one best wake time inside your range to reduce groggy wake-ups.</p>
+
+          <div class="button-row">
+            <button id="saveScheduleBtn" class="btn btn-primary">Set adaptive alarm</button>
+            <button id="clearScheduleBtn" class="btn btn-soft">Clear</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Calm Test Mode</h2>
+          <p class="hint">No auto trigger on app exit. Tap <strong>Arm 5s test</strong>, then turn screen off.</p>
+          <div class="toggle-row">
+            <span>Enable test mode</span>
+            <label class="switch">
+              <input type="checkbox" id="testModeToggle" />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <button id="runFastCheckBtn" class="btn btn-accent">Arm 5s screen-off test</button>
+        </section>
+
+        <section class="card">
+          <h2>Adaptive Reliability</h2>
+          <div class="status-list">
+            <p><span>Last screen-off:</span> <strong id="lastScreenOff">Unknown</strong></p>
+            <p><span>Last meaningful use:</span> <strong id="lastMeaningfulUse">Unknown</strong></p>
+            <p><span>Quick night checks:</span> <strong id="briefCheckCount">0</strong></p>
+            <p><span>Sleep confidence:</span> <strong id="sleepState">Analyzing</strong></p>
+            <p><span>Alarm state:</span> <strong id="alarmState">Not scheduled</strong></p>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Why this helps</h2>
+          <ul class="benefits">
+            <li>Reduces stress with predictable wake windows instead of random alarms.</li>
+            <li>Improves morning freshness by aligning alarms with sleep-cycle timing.</li>
+            <li>Supports anxiety-friendly planning by making bedtime/wake setup fast and clear.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>System Feed</h2>
+          <ul id="eventFeed" class="feed"></ul>
+        </section>
+      </main>
+    </div>
+
+    <div id="alarmModal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <h3>⏰ Wake-up Alarm</h3>
+        <p id="alarmMessage">Your alarm has fired.</p>
+        <button id="dismissAlarmBtn" class="btn btn-primary">Dismiss</button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
