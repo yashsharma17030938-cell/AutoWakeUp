@@ -38,6 +38,9 @@ The foundational hybrid architecture (WebView UI bridging to a native Android ba
 2.  **API Compatibility:** Hardening exact alarm scheduling for newer Android versions (API 31+).
 3.  **Logistical Backend:** Fine-tuning the mathematical logic that scores and selects the final adaptive wake time.
 
+<div align="center">
+  <img src="PASTE_YOUR_CODEX_IMAGE_LINK_HERE" alt="AutoWakeUp UI Preview" width="250" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+</div>
 ---
 <div align="center">
   <p>Built with ☕ and late-night coding.</p>
